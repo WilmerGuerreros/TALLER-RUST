@@ -1,0 +1,22 @@
+pub fn digitos_distintos(n: u64) -> u32 {
+    let mut vistos = [false; 10];
+    let mut cantidad = 0;
+    let mut numero = n;
+
+    loop {
+        let digito = (numero % 10) as usize;
+
+        if !vistos[digito] {
+            vistos[digito] = true;
+            cantidad += 1;
+        }
+
+        numero /= 10;
+
+        if numero == 0 {
+            break;
+        }
+    }
+
+    cantidad
+}
