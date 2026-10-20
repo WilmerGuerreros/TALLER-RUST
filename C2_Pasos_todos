@@ -1,0 +1,13 @@
+pub fn pasos_todos(limite: usize) -> Vec<u32> {
+    let mut pasos = vec![0u32; limite + 1];
+
+    for i in 2..=limite {
+        if i % 2 == 0 {
+            pasos[i] = pasos[i / 2] + 1;
+        } else {
+            pasos[i] = pasos[i - 1] + 1;
+        }
+    }
+
+    pasos
+}
