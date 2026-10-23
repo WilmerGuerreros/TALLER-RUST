@@ -1,0 +1,30 @@
+pub fn binario_a_decimal(texto: &str) -> Result<u64, String> {
+    if texto.is_empty() {
+        return Err("El texto está vacío".to_string());
+    }
+
+    let mut resultado = 0u64;
+
+    for c in texto.chars() {
+        if c != '0' && c != '1' {
+            return Err("Carácter binario inválido".to_string());
+        }
+
+        resultado = resultado
+            .checked_mul(2)
+            .ok_or("Desbordamiento".to_string())?;
+
+        let digito = if c == '1' { 1 } else { 0 };
+
+        resultado = resultado
+            .checked_add(digito)
+            .ok_or("Desbordamiento".to_string())?;
+    }
+
+    Ok(resultado)
+}
+
+fn main() {
+    println!("1011 = {:?}", binario_a_decimal("1011"));
+    println!("1021 = {:?}", binario_a_decimal("1021"));
+}
